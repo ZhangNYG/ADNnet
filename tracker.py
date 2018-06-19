@@ -8,6 +8,9 @@ import numpy as np
 import scipy.io as sio
 import cv2, glob, os, re
 import tracker_util as tutil
+import copy
+from PIL import Image
+
 
 params = tutil.get_params()
 
@@ -410,12 +413,31 @@ with tf.Graph().as_default():
                                           (int(curr_bbox[0] + curr_bbox[2]), int(curr_bbox[1] + curr_bbox[3])),
                                           [255, 0, 0], 2)
                     #### 截取视频
-                    little_frame = frame[int(curr_bbox[1]):int(curr_bbox[1] + curr_bbox[3]),int(curr_bbox[0]):int(curr_bbox[0] + curr_bbox[2])]
+                    box = (int(curr_bbox[0]), int(curr_bbox[1]), int(curr_bbox[0]) + int(curr_bbox[2]),
+                           int(curr_bbox[1]) + int(curr_bbox[3]))
+                    imgs=Image.fromarray(img)
+                    little_frame=imgs.crop(box)
+                    #little_frame = frame[int(curr_bbox[1]):int(curr_bbox[1] + curr_bbox[3]),int(curr_bbox[0]):int(curr_bbox[0] + curr_bbox[2])]
+                    fill_frame = np.copy(img)
+                    # print(len(fill_frame[0])+2, len(fill_frame[1])+2)
+                    print(len(fill_frame))
+                    # mask = np.zeros([len(fill_frame)+2, len(fill_frame[0])+2, 1], np.uint8)
+                    # mask[int(curr_bbox[1]):int(curr_bbox[1] + curr_bbox[3]),int(curr_bbox[0]):int(curr_bbox[0] + curr_bbox[2])] = 1
+                    # # cv2.floodFill(fill_frame, mask, ( int(curr_bbox[0] + curr_bbox[2]/2),int(curr_bbox[1] + curr_bbox[3]/2)), (0, 0, 255), cv2.FLOODFILL_MASK_ONLY)
+                    # cv2.floodFill(fill_frame, mask,
+                    #               (0, 0),
+                    #               (0, 0, 255), cv2.FLOODFILL_MASK_ONLY)
+                    im_back = Image.new("RGB" , (len(fill_frame[0]),len(fill_frame)),"white")
+                    im_back.paste(little_frame,box)
                     print(frames[f][-8:])
                     cv2.imwrite('results/' + frames[f][-8:], frame)
-                    cv2.imwrite('resultslittle/' + frames[f][-8:], little_frame)
-                    cv2.imshow('f', frame)
-                    cv2.imshow('little', little_frame)
+                    #cv2.imwrite('resultslittle/' + frames[f][-8:], little_frame)
+                    little_frame.save('resultslittle/' + frames[f][-8:],"JPEG")
+                    im_back.save('resultsPLUS/' + frames[f][-8:], "JPEG")
+                    #cv2.imshow('f', frame)
+                    #cv2.imshow('little', little_frame)
+                    #little_frame.show();
+                    #cv2.imshow('floodFill', im_back)
                     key = cv2.waitKey(1) & 0xff
                     if key == ord('s'):
                         break
