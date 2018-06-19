@@ -1,7 +1,7 @@
 ### 直接运行
 	python tracker.py
 ### 所需依赖
-	自己试试吧，缺什么装什么
+	自己试试吧，缺什么装什么！！ 哈哈
 ### 视频转换
 	FFMPEG  -i  uploadfile/video/test.wmv -c:v libx264 -strict -2 -s 1280x720 -b 1000k uploadfile/mp4/test.mp4
 
@@ -29,9 +29,9 @@ https://www.cnblogs.com/frost-yen/p/5848781.html
 	ffmpeg -ss 00:00:00 -t 00:00:05 -i 3.avi -vcodec copy -acodec copy output1.mp4
 
 ### 截取从头开始的30s
-ffmpeg -ss 00:00:00 -t 00:00:06 -i 3.avi -vcodec copy -acodec copy split.mp4
+	ffmpeg -ss 00:00:00 -t 00:00:06 -i 3.avi -vcodec copy -acodec copy split.mp4
 ### 截取从30s开始的30s
-ffmpeg -ss 00:00:30 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split1.mp4
+	ffmpeg -ss 00:00:30 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split1.mp4
 ### 进行视频的合并
-ffmpeg -f concat -i list.txt -c copy concat.mp4
+	ffmpeg -f concat -i list.txt -c copy concat.mp4
 

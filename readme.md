@@ -29,9 +29,14 @@ https://www.cnblogs.com/frost-yen/p/5848781.html
 	ffmpeg -ss 00:00:00 -t 00:00:05 -i 3.avi -vcodec copy -acodec copy output1.mp4
 
 ### 截取从头开始的30s
-ffmpeg -ss 00:00:00 -t 00:00:06 -i 3.avi -vcodec copy -acodec copy split.mp4
+	ffmpeg -ss 00:00:00 -t 00:00:06 -i 3.avi -vcodec copy -acodec copy split.mp4
 ### 截取从30s开始的30s
-ffmpeg -ss 00:00:30 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split1.mp4
+	ffmpeg -ss 00:00:30 -t 00:00:30 -i keyoutput.mp4 -vcodec copy -acodec copy split1.mp4
 ### 进行视频的合并
-ffmpeg -f concat -i list.txt -c copy concat.mp4
+	ffmpeg -f concat -i list.txt -c copy concat.mp4
+	
+## References
+- Action-Decision Networks for Visual Tracking with Deep Reinforcement Learning (CVPR2017) : http://openaccess.thecvf.com/content_cvpr_2017/papers/Yun_Action-Decision_Networks_for_CVPR_2017_paper.pdf
+- ADNet Implmentation in Matlab : https://github.com/hellbell/ADNet/
+- ADNet Implmentation in Python ：https://github.com/sseung0703/ADNet-tensorflow
 
