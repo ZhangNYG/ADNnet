@@ -1,6 +1,11 @@
-FFMPEG  -i  uploadfile/video/test.wmv -c:v libx264 -strict -2 -s 1280x720 -b 1000k uploadfile/mp4/test.mp4
+### 直接运行
+	python tracker.py
+### 所需依赖
+	自己试试吧，缺什么装什么！！ 哈哈
+### 视频转换
+	FFMPEG  -i  uploadfile/video/test.wmv -c:v libx264 -strict -2 -s 1280x720 -b 1000k uploadfile/mp4/test.mp4
 
-FFMPEG  -i  3.avi -c:v libx264 -strict -2 -s 720x480 -b 1000k 3.mp4
+	FFMPEG  -i  3.avi -c:v libx264 -strict -2 -s 720x480 -b 1000k 3.mp4
 
 https://www.cnblogs.com/frost-yen/p/5848781.html
 
